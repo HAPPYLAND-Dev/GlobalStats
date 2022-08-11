@@ -39,10 +39,19 @@ public class PlayerStatisticsMenuItems {
 
     public static void getItemPreview (String type, Player player, OfflinePlayer target) {
 
-        PaginatedGui gui = Gui.paginated().title(Formatters.miniMulti(Formatters.lang().getString("gui.main.title-player", "<black><player> <type> stats"), List.of("player", "type"), List.of(
+        String title = "无";
+        switch (type) {
+            case "fishing" -> title = "钓鱼";
+            case "killing" -> title = "击杀";
+            case "travelling" -> title = "游走方块";
+            case "mining", "placing" -> title = "放置";
+        }
+
+        PaginatedGui gui = Gui.paginated().title(Formatters.miniMulti(Formatters.lang().getString("gui.main.title-player", "<black><player> <type> 统计"), List.of("player", "type"), List.of(
                 Component.text(Formatters.getPossessionString(Objects.requireNonNull(target.getName()))),
-                Component.text(type)
+                Component.text(title)
         ))).rows(4).pageSize(27).create();
+
         Pagination.getPaginatedUtil(gui, target, "player", type);
 
         gui.setItem(31, ItemBuilder.skull().owner(target).name(Formatters.mini(Formatters.lang().getString("gui.main.player_head.title", "<player>"), "player", Component.text(Formatters.getPossessionString(Objects.requireNonNull(target.getName())))).decoration(TextDecoration.ITALIC, false))
@@ -80,7 +89,7 @@ public class PlayerStatisticsMenuItems {
                         itemStack.setItemMeta(itemMeta);
                     }
 
-                    GuiItem item = ItemBuilder.from(itemStack).lore(Formatters.mini(Formatters.lang().getString("gui.main.fishing.lore", "<white>Total: <amount>"), "amount", Component.text(((Long) json.get(key)).intValue())).decoration(TextDecoration.ITALIC, false)).asGuiItem();
+                    GuiItem item = ItemBuilder.from(itemStack).lore(Formatters.mini(Formatters.lang().getString("gui.main.fishing.lore", "<white>总计: <amount>"), "amount", Component.text(((Long) json.get(key)).intValue())).decoration(TextDecoration.ITALIC, false)).asGuiItem();
                     gui.addItem(item);
                 }
             } catch (Exception exception) {
@@ -111,7 +120,7 @@ public class PlayerStatisticsMenuItems {
 
                     if (material != null) {
                         GuiItem item = ItemBuilder.from(material).name(Component.translatable(type).decoration(TextDecoration.ITALIC, false))
-                                .lore(Formatters.mini(Formatters.lang().getString("gui.main.killing.lore", "<white>Total: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).asGuiItem();
+                                .lore(Formatters.mini(Formatters.lang().getString("gui.main.killing.lore", "<white>总计: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).asGuiItem();
                         gui.addItem(item);
                     }
                 }
@@ -120,7 +129,7 @@ public class PlayerStatisticsMenuItems {
     }
 
     private static void getMovements(PaginatedGui gui, OfflinePlayer target) {
-        ArrayList<String> itemNames = new ArrayList<>(Arrays.asList("Distance Walked", "Distance Sprinted", "Distance Swum", "Distance Walked on Water", "Distance Walked under Water", "Distance Climbed", "Distance Crouched", "Distance Fallen", "Distance by Elytra", "Distance by Boat", "Distance by Horse", "Distance by Minecart", "Distance by Pig", "Distance by Strider", "Times Jumps"));
+        ArrayList<String> itemNames = new ArrayList<>(Arrays.asList("步行距离", "短跑距离", "游泳距离", "水上行走距离", "水下行走距离", "攀登距离", "蹲下距离", "摔倒距离", "鞘翅飞行距离", "乘船距离", "乘马距离", "乘矿车距离", "乘猪距离", "乘炽足兽距离", "跳跃距离"));
         ArrayList<Statistic> statistics = new ArrayList<>(Arrays.asList(Statistic.WALK_ONE_CM, Statistic.SPRINT_ONE_CM, Statistic.SWIM_ONE_CM, Statistic.WALK_ON_WATER_ONE_CM, Statistic.WALK_UNDER_WATER_ONE_CM, Statistic.CLIMB_ONE_CM, Statistic.CROUCH_ONE_CM, Statistic.FALL_ONE_CM, Statistic.AVIATE_ONE_CM, Statistic.BOAT_ONE_CM, Statistic.HORSE_ONE_CM, Statistic.MINECART_ONE_CM, Statistic.PIG_ONE_CM, Statistic.STRIDER_ONE_CM, Statistic.JUMP));
         ArrayList<Material> materials = new ArrayList<>(Arrays.asList(Material.LEATHER_BOOTS, Material.GOLDEN_BOOTS, Material.WATER_BUCKET, Material.ICE, Material.DIAMOND_HELMET, Material.LADDER, Material.LEATHER_BOOTS, Material.LINGERING_POTION, Material.ELYTRA, Material.OAK_BOAT, Material.DIAMOND_HORSE_ARMOR, Material.MINECART, Material.PIG_SPAWN_EGG, Material.STRIDER_SPAWN_EGG, Material.IRON_BOOTS));
 
@@ -130,7 +139,7 @@ public class PlayerStatisticsMenuItems {
                 statAmount = (int) Math.floor(target.getStatistic(statistics.get(index))) / 100;
             }
 
-            GuiItem item = ItemBuilder.from(materials.get(index)).lore(Formatters.mini(Formatters.lang().getString("gui.main.killing.lore", "<white>Total: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).flags(ItemFlag.HIDE_POTION_EFFECTS)
+            GuiItem item = ItemBuilder.from(materials.get(index)).lore(Formatters.mini(Formatters.lang().getString("gui.main.killing.lore", "<white>总计: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).flags(ItemFlag.HIDE_POTION_EFFECTS)
                     .name(Component.text(itemNames.get(index)).color(NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false))
                     .asGuiItem();
             gui.addItem(item);
@@ -145,7 +154,7 @@ public class PlayerStatisticsMenuItems {
             if (target.getStatistic(statistic, material) > 0 && material.isBlock()) {
                 int statAmount = target.getStatistic(statistic, material);
 
-                GuiItem item = ItemBuilder.from(material).lore(Formatters.mini(Formatters.lang().getString(typeLore, "<white>Total: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).asGuiItem();
+                GuiItem item = ItemBuilder.from(material).lore(Formatters.mini(Formatters.lang().getString(typeLore, "<white>总计: <amount>"), "amount", Component.text(statAmount)).decoration(TextDecoration.ITALIC, false)).asGuiItem();
                 gui.addItem(item);
             }
         }

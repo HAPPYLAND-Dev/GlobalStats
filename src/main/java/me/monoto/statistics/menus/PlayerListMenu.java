@@ -28,7 +28,7 @@ public class PlayerListMenu {
     public static void populateMenu(PaginatedGui gui) {
 
         Pagination.getPaginatedUtil(gui, null, "player-list", "none");
-        gui.setItem(31, ItemBuilder.from(Material.CHEST).name(Component.text("Global Statistics").color(NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false))
+        gui.setItem(31, ItemBuilder.from(Material.CHEST).name(Component.text("全部统计").color(NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false))
                 .asGuiItem(event -> GlobalMenu.initialise((Player) event.getWhoClicked())));
 
         if (!StatisticsManager.getPlayerStatistics().isEmpty()) {

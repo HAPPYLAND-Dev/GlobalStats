@@ -23,11 +23,11 @@ import java.util.stream.Collectors;
 
 public class Formatters {
     public static String getPossessionString(String string) {
-        return string.endsWith("s") ? string : string + "'s";
+        return string + "的";
     }
 
     public static Component getPlayerSkullTitle(OfflinePlayer player) {
-        return Formatters.mini(Formatters.lang().getString("gui.main.player-head.title", "<player> statistics"), "player", Component.text(Formatters.getPossessionString(Objects.requireNonNull(player.getName()))).decoration(TextDecoration.ITALIC, false));
+        return Formatters.mini(Formatters.lang().getString("gui.main.player-head.title", "<player> 统计"), "player", Component.text(Formatters.getPossessionString(Objects.requireNonNull(player.getName()))).decoration(TextDecoration.ITALIC, false));
     }
 
     public static String getDistanceFormatter(double value) {

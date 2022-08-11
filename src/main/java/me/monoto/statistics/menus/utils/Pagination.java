@@ -21,11 +21,11 @@ public class Pagination {
         }
 
         Component guiTitle = switch (menuType) {
-            case "player" -> Formatters.miniMulti(Formatters.lang().getString("gui.main.title-player", "<black><player> <type> stats"), List.of("player", "type"), List.of(
+            case "player" -> Formatters.miniMulti(Formatters.lang().getString("gui.main.title_player", "<black><player> <type> 统计"), List.of("player", "type"), List.of(
                     Component.text(Formatters.getPossessionString(Objects.requireNonNull(oPlayer.getName()))),
                     Component.text(statType)
             ));
-            case "player-list" -> Formatters.mini(Formatters.lang().getString("gui.main.title-player-list", "<black>Player Statistics"), "page", Component.text(gui.getCurrentPageNum()));
+            case "player-list" -> Formatters.mini(Formatters.lang().getString("gui.main.title_player_list", "<black>玩家列表"), "page", Component.text(gui.getCurrentPageNum()));
             default -> throw new IllegalStateException("Unexpected value");
         };
 

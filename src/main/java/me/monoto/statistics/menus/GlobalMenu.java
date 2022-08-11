@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 
 public class GlobalMenu {
     public static void initialise(Player player) {
-        Gui gui = Gui.gui().rows(3).title(Formatters.mini(Formatters.lang().getString("gui.main.title_global", "<black>Global Statistics"))).create();
+        Gui gui = Gui.gui().rows(3).title(Formatters.mini(Formatters.lang().getString("gui.main.title_global", "<black>全部统计"))).create();
         populateGlobal(gui);
 
         gui.setDefaultClickAction(event -> event.setCancelled(true));
@@ -34,7 +34,7 @@ public class GlobalMenu {
     }
 
     public static void initialise(Player player, OfflinePlayer oPlayer) {
-        Gui gui = Gui.gui().rows(3).title(Formatters.mini(Formatters.lang().getString("gui.main.title_global", "<black>Global Statistics"))).create();
+        Gui gui = Gui.gui().rows(3).title(Formatters.mini(Formatters.lang().getString("gui.main.title_global", "<black>全部统计"))).create();
 
         populatePlayer(gui, oPlayer);
 
@@ -43,7 +43,7 @@ public class GlobalMenu {
     }
 
     private static void populateGlobal(Gui gui) {
-        gui.setItem(10, ItemBuilder.from(Material.CHEST).name(Formatters.mini(Formatters.lang().getString("gui.main.all.title", "All Players")).decoration(TextDecoration.ITALIC, false)).lore(Formatters.mini(Formatters.lang().getString("gui.main.all.lore", "<white>Click me to view all players")).decoration(TextDecoration.ITALIC, false)).asGuiItem(event -> PlayerListMenu.initialise((Player) event.getWhoClicked())));
+        gui.setItem(10, ItemBuilder.from(Material.CHEST).name(Formatters.mini(Formatters.lang().getString("gui.main.all.title", "<red>所有玩家")).decoration(TextDecoration.ITALIC, false)).lore(Formatters.mini(Formatters.lang().getString("gui.main.all.lore", "<white>点击我来预览所有玩家")).decoration(TextDecoration.ITALIC, false)).asGuiItem(event -> PlayerListMenu.initialise((Player) event.getWhoClicked())));
         populateMenu(gui, null);
     }
 
@@ -89,7 +89,7 @@ public class GlobalMenu {
             default -> "0";
         };
 
-        lore.add(Formatters.mini(Formatters.lang().getString("gui.main.category." + type + ".lore", "<white>Total: <amount>"), "amount", Component.text(globalStatistic)).decoration(TextDecoration.ITALIC, false));
+        lore.add(Formatters.mini(Formatters.lang().getString("gui.main.category." + type + ".lore", "<white>总计: <amount>"), "amount", Component.text(globalStatistic)).decoration(TextDecoration.ITALIC, false));
 
         StatisticsManager.getTopThreeStatistics().forEach((stat, playerHashmap) -> {
             if (Objects.equals(type, stat)) {
@@ -128,7 +128,7 @@ public class GlobalMenu {
             default -> "0";
         };
 
-        lore.add(Formatters.mini(Formatters.lang().getString("gui.main.category." + type + ".lore", "<white>Total: <amount>"), "amount", Component.text(playerStats)).decoration(TextDecoration.ITALIC, false));
+        lore.add(Formatters.mini(Formatters.lang().getString("gui.main.category." + type + ".lore", "<white>总计: <amount>"), "amount", Component.text(playerStats)).decoration(TextDecoration.ITALIC, false));
 
         if (Objects.equals(type, "fishing") && target.getPlayer() == null) {
             lore.add(Formatters.mini(Formatters.lang().getString("gui.util.offline_player", "<red>This category doesn't support offline viewing")));

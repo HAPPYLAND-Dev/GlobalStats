@@ -9,65 +9,65 @@
 # If you want to use hex colors, please use the following format: <color:#FF5555>
 
 error:
-  unknown_command: "<red>Unknown command: <gray><cmd>"
-  no_permission: "<hover:show_text:'<gray><permission>'><red>You do not have the permission to do this!"
-  invalid_usage: "<red>Invalid Usage!"
-  never_played: "<red><player> has never played the server before."
+  unknown_command: '<red>未知命令: <gray><cmd>'
+  no_permission: <hover:show_text:'<gray><permission>'><red>你无权这么做
+  invalid_usage: '<red>错误的用法!'
+  never_played: '<red><player> 从未进入过服务器'
 
 gui:
   util:
-    back: "<yellow>Go back"
+    back: '<yellow>返回'
     page:
-      forward: "<yellow>Next page"
-      backward: "<yellow>Last page"
+      forward: '<yellow>下一页'
+      backward: '<yellow>上一页'
     all_players:
-      title: "<red>All players"
-      lore: "<white>Click me to view all Players"
-    offline_player: "<red>Can't check offline stats for this category"
-
-
+      title: '<red>所有玩家'
+      lore: '<white>点击我来预览所有玩家'
+    offline_player: '<red>无法检测离线玩家的这个数据'
+  
+  
   main: # First page Statistics Menu [Global, Player] statistics
-    title_global: "<black>Global Statistics"
-    title_player: "<black><player> <type> stats"
-    title_player_list: "<black>Player List"
+    title_global: '<black>全部统计'
+    title_player: '<black><player> <type> 统计'
+    title_player_list: '<black>玩家列表'
     category:
       fishing:
-        title: "<green>Fishing"
-        lore: "<white>Total: <amount>"
+        title: '<green>钓鱼'
+        lore: '<white>总计: <amount>'
         top_players:
-          1: "<green>1<white>: <player> <amount>"
-          2: "<yellow>2<white>: <player> <amount>"
-          3: "<red>3<white>: <player> <amount>"
+          '1': '<green>1<white>: <player> <amount>'
+          '2': '<yellow>2<white>: <player> <amount>'
+          '3': '<red>3<white>: <player> <amount>'
       mining:
-        title: "<green>Mining"
-        lore: "<white>Total: <amount>"
+        title: '<green>挖掘'
+        lore: '<white>总计: <amount>'
         top_players:
-          1: "<green>1<white>: <player> <amount>"
-          2: "<yellow>2<white>: <player> <amount>"
-          3: "<red>3<white>: <player> <amount>"
+          '1': '<green>1<white>: <player> <amount>'
+          '2': '<yellow>2<white>: <player> <amount>'
+          '3': '<red>3<white>: <player> <amount>'
       killing:
-        title: "<green>Killing"
-        lore: "<white>Total: <amount>"
+        title: '<green>击杀'
+        lore: '<white>总计: <amount>'
         top_players:
-          1: "<green>1<white>: <player> <amount>"
-          2: "<yellow>2<white>: <player> <amount>"
-          3: "<red>3<white>: <player> <amount>"
+          '1': '<green>1<white>: <player> <amount>'
+          '2': '<yellow>2<white>: <player> <amount>'
+          '3': '<red>3<white>: <player> <amount>'
       travelling:
-        title: "<green>Traversed Blocks"
-        lore: "<white>Total: <amount>"
+        title: '<green>游走方块'
+        lore: '<white>总计: <amount>'
         top_players:
-          1: "<green>1<white>: <player> <amount>"
-          2: "<yellow>2<white>: <player> <amount>"
-          3: "<red>3<white>: <player> <amount>"
+          '1': '<green>1<white>: <player> <amount>'
+          '2': '<yellow>2<white>: <player> <amount>'
+          '3': '<red>3<white>: <player> <amount>'
       placing:
-        title: "<green>Placing"
-        lore: "<white>Total: <amount>"
+        title: '<green>放置'
+        lore: '<white>总计: <amount>'
         top_players:
-          1: "<green>1<white>: <player> <amount>"
-          2: "<yellow>2<white>: <player> <amount>"
-          3: "<red>3<white>: <player> <amount>"
+          '1': '<green>1<white>: <player> <amount>'
+          '2': '<yellow>2<white>: <player> <amount>'
+          '3': '<red>3<white>: <player> <amount>'
     player_head:
-      title: "<player> Statistics"
+      title: '<player> 统计'
 
 
 
